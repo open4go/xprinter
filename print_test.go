@@ -2,6 +2,7 @@ package xprinter
 
 import (
 	"github.com/joho/godotenv"
+	"github.com/open4go/xprinter/tp"
 	"log"
 	"os"
 	"testing"
@@ -37,7 +38,7 @@ func TestPrinter_Print(t *testing.T) {
 				"0",
 			},
 			args{
-				"hello jack again",
+				tp.RenderNow(),
 			},
 		},
 	}

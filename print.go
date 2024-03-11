@@ -23,14 +23,15 @@ type Printer struct {
 }
 
 type PrintReq struct {
-	Sn        string `json:"sn"`
-	Content   string `json:"content"`
-	Copies    int    `json:"copies"`
-	Voice     int    `json:"voice"`
-	User      string `json:"user"`
-	Timestamp string `json:"timestamp"`
-	Sign      string `json:"sign"`
-	Debug     string `json:"debug"`
+	Sn        string  `json:"sn"`
+	Content   string  `json:"content"`
+	Copies    int     `json:"copies"`
+	Voice     int     `json:"voice"`
+	User      string  `json:"user"`
+	Timestamp string  `json:"timestamp"`
+	Sign      string  `json:"sign"`
+	Debug     string  `json:"debug"`
+	Money     float64 `json:"money"`
 }
 
 // SignNow 参数说明：例如：user=acc、UserKEY=abc、timestamp=acbc，那么先拼成字符串accabcacbc，再将此字符串进行SHA1加密，得到sign。
@@ -63,11 +64,12 @@ func (p *Printer) Print(content string) {
 		Sn:        p.Sn,
 		Content:   content,
 		Copies:    1,
-		Voice:     1,
+		Voice:     2,
 		User:      p.User,
 		Timestamp: t, // or any other timestamp format you prefer
 		Sign:      sign,
 		Debug:     "0",
+		//Money:     22.12,
 	}
 
 	// Convert struct to JSON
