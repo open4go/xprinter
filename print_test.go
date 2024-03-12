@@ -38,7 +38,7 @@ func TestPrinter_Print(t *testing.T) {
 				"0",
 			},
 			args{
-				tp.RenderNow(),
+				tp.Render(tp.LoadExample()),
 			},
 		},
 	}

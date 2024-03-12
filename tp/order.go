@@ -34,14 +34,14 @@ type ReceiptData struct {
 	QRCodeURL string
 }
 
-// 定义菜品条目结构
+// Item 定义菜品条目结构
 type Item struct {
 	Name   string
 	Amount int
 	Price  float64
 }
 
-func RenderNow() string {
+func LoadExample() ReceiptData {
 	// 准备数据
 	items := []Item{
 		{Name: "可乐鸡翅", Amount: 2, Price: 9.99},
@@ -67,6 +67,11 @@ func RenderNow() string {
 		QRCodeURL: qrCodeURL,
 	}
 
+	return receiptData
+}
+
+func Render(data ReceiptData) string {
+
 	// 准备模板对象
 	tmpl, err := template.New("receipt").Parse(receiptTemplate)
 	if err != nil {
@@ -76,7 +81,7 @@ func RenderNow() string {
 
 	var output bytes.Buffer
 
-	err = tmpl.Execute(&output, receiptData)
+	err = tmpl.Execute(&output, data)
 	if err != nil {
 		fmt.Println("Error executing template:", err)
 		return ""
