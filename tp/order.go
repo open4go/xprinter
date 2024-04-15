@@ -47,6 +47,7 @@ type ReceiptData struct {
 	OrderID      string
 	QueueNumber  string
 	PayTime      string
+	TradeID      string
 }
 
 // Item 定义菜品条目结构
