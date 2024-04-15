@@ -70,6 +70,25 @@ func LoadExample() ReceiptData {
 	return receiptData
 }
 
+func Load(items []Item, address string, phone string, note string, total string) ReceiptData {
+	// 准备数据
+	orderTime := time.Now().Format("2006-01-02 15:04:05")
+	qrCodeURL := "http://www.xpyun.net"
+
+	// 渲染模板
+	receiptData := ReceiptData{
+		Items:     items,
+		Total:     total,
+		Address:   address,
+		Phone:     phone,
+		OrderTime: orderTime,
+		Note:      note,
+		QRCodeURL: qrCodeURL,
+	}
+
+	return receiptData
+}
+
 func Render(data ReceiptData) string {
 
 	// 准备模板对象
