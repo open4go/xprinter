@@ -15,18 +15,19 @@ const receiptTemplate = `<CB>黄李记<BR><BR><BR></CB>
 订单编号: {{.OrderID}}
 ********************商品清单********************
 <L>
-<LINE p="20,36" />菜名<HT>数量<HT>单价<BR>
-{{range .Items}}--------------------------------------<BR>
+<LINE p="20,40" />菜名<HT>数量<HT>单价<BR>
+{{range .Items}}------------------------------------------<BR>
 {{.Name}}<HT>{{.Amount}}<HT>{{.Price}}<BR>
-{{end}}--------------------------------------<BR>
+{{end}}------------------------------------------<BR>
 </L>
-**********************************************
 <R><B>合计：{{.Total}}元</B><BR></R><BR>
 <L>门店地址：{{.StoreAddress}}<BR>
 门店电话：{{.StorePhone}}<BR>
+座位号：{{.SeatNumber}}<BR>
+支付时间：{{.PayTime}}<BR>
+用餐人数：{{.CustomerNum}}<BR>
 客户地址：{{.Address}}<BR>
 客户电话：{{.Phone}}<BR>
-支付时间：{{.PayTime}}<BR>
 备注：{{.Note}}<BR>
 </L>
 <C><QRCODE s=8 e=L l=center>{{.Invoice}}</QRCODE><BR>
@@ -48,6 +49,8 @@ type ReceiptData struct {
 	QueueNumber  string
 	PayTime      string
 	TradeID      string
+	SeatNumber   string
+	CustomerNum  int
 }
 
 // Item 定义菜品条目结构
