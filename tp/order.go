@@ -79,7 +79,7 @@ func LoadExample() ReceiptData {
 		Phone:     phone,
 		OrderTime: orderTime,
 		Note:      note,
-		QRCodeURL: qrCodeURL,
+		Invoice:   qrCodeURL,
 	}
 
 	return receiptData
@@ -98,7 +98,7 @@ func Load(items []Item, address string, phone string, note string, total string)
 		Phone:     phone,
 		OrderTime: orderTime,
 		Note:      note,
-		QRCodeURL: qrCodeURL,
+		Invoice:   qrCodeURL,
 	}
 
 	return receiptData
