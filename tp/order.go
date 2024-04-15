@@ -8,30 +8,45 @@ import (
 )
 
 // 准备模板字符串
-const receiptTemplate = `<CB>黄李记小票<BR><BR><BR></CB>
+const receiptTemplate = `<CB>黄李记<BR><BR><BR></CB>
+<L><N>-----------------------------------------------
+<HB>#{{.QueueNumber}}
+<L><N>下单时间:{{.OrderTime}}
+订单编号: {{.OrderID}}
+**********************商品**********************
 <L>
-<LINE p="20,26" />菜名<HT>数量<HT>单价<BR>
+<LINE p="20,30" />菜名<HT>数量<HT>单价<BR>
 {{range .Items}}--------------------------------<BR>
 {{.Name}}<HT>{{.Amount}}<HT>{{.Price}}<BR>
 {{end}}--------------------------------<BR>
 </L>
+**********************************************
 <R>合计：{{.Total}}元<BR></R><BR>
-<L>客户地址：{{.Address}}<BR>
+<L>门店地址：{{.StoreAddress}}<BR>
+门店电话：{{.StorePhone}}<BR>
+客户地址：{{.Address}}<BR>
 客户电话：{{.Phone}}<BR>
-下单时间：{{.OrderTime}}<BR>
+支付时间：{{.PayTime}}<BR>
 备注：{{.Note}}<BR>
 </L>
-<QRCODE s=8 e=L l=center>{{.QRCodeURL}}</QRCODE><BR>`
+<C><QRCODE s=8 e=L l=center>{{.Invoice}}</QRCODE><BR>
+<C><BARCODE t=CODE128 w=2 h=100 p=2>{{.TradeID}}</BARCODE>
+`
 
-// 定义小票数据结构
+// ReceiptData 定义小票数据结构
 type ReceiptData struct {
-	Items     []Item
-	Total     string
-	Address   string
-	Phone     string
-	OrderTime string
-	Note      string
-	QRCodeURL string
+	Items        []Item
+	Total        string
+	Address      string
+	Phone        string
+	OrderTime    string
+	Note         string
+	Invoice      string
+	StoreAddress string
+	StorePhone   string
+	OrderID      string
+	QueueNumber  string
+	PayTime      string
 }
 
 // Item 定义菜品条目结构
