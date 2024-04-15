@@ -13,7 +13,7 @@ const receiptTemplate = `<CB>黄李记<BR><BR><BR></CB>
 <HB>#{{.QueueNumber}}
 <L><N>下单时间:{{.OrderTime}}
 订单编号: {{.OrderID}}
-**********************商品**********************
+**********************商品清单**********************
 <L>
 <LINE p="20,30" />菜名<HT>数量<HT>单价<BR>
 {{range .Items}}--------------------------------<BR>
@@ -21,7 +21,7 @@ const receiptTemplate = `<CB>黄李记<BR><BR><BR></CB>
 {{end}}--------------------------------<BR>
 </L>
 **********************************************
-<R>合计：{{.Total}}元<BR></R><BR>
+<R><B>合计：{{.Total}}元</B><BR></R><BR>
 <L>门店地址：{{.StoreAddress}}<BR>
 门店电话：{{.StorePhone}}<BR>
 客户地址：{{.Address}}<BR>
