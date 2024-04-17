@@ -127,3 +127,24 @@ func Render(data ReceiptData) string {
 
 	return output.String()
 }
+
+// RenderFromClient 加载客户自定义模版
+func RenderFromClient(data ReceiptData, temp string) string {
+
+	// 准备模板对象
+	tmpl, err := template.New("receipt").Parse(temp)
+	if err != nil {
+		fmt.Println("Error parsing template:", err)
+		return ""
+	}
+
+	var output bytes.Buffer
+
+	err = tmpl.Execute(&output, data)
+	if err != nil {
+		fmt.Println("Error executing template:", err)
+		return ""
+	}
+
+	return output.String()
+}
