@@ -58,6 +58,8 @@ type Item struct {
 	Name   string
 	Amount int
 	Price  float64
+	// 备注：例如：加粉；加辣
+	Remark string
 }
 
 func LoadExample() ReceiptData {
