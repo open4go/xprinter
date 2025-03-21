@@ -51,6 +51,14 @@ type ReceiptData struct {
 	TradeID      string
 	SeatNumber   string
 	CustomerNum  int
+	Meta         MetaInfo
+}
+
+// MetaInfo 基础信息
+type MetaInfo struct {
+	MerchantID string
+	PrinterID  string
+	TplID      string
 }
 
 // Item 定义菜品条目结构
