@@ -8,30 +8,48 @@ import (
 )
 
 // 准备模板字符串
-const receiptTemplate = `<CB>黄李记<BR><BR><BR></CB>
-<L><N>-----------------------------------------------
-<HB>#{{.QueueNumber}}
-<L><N>下单时间:{{.OrderTime}}
-订单编号: {{.OrderID}}
-********************商品清单********************
+const receiptTemplate = `<CB>黄李记</CB><BR>
+<C>--------------------------------</C><BR>
+
 <L>
-<LINE p="20,40" />菜名<HT>数量<HT>单价<BR>
-{{range .Items}}------------------------------------------<BR>
-{{.Name}}<HT>{{.Amount}}<HT>{{.Price}}<BR>
-{{end}}------------------------------------------<BR>
+订单号：#{{.QueueNumber}}<BR>
+下单时间：{{.OrderTime}}<BR>
+订单编号：{{.OrderID}}<BR>
 </L>
-<R><B>合计：{{.Total}}元</B><BR></R><BR>
-<L>门店地址：{{.StoreAddress}}<BR>
+
+<C>**************商品清单**************</C><BR>
+
+<L>
+菜名            数量   单价<BR>
+--------------------------------<BR>
+{{range .Items}}
+{{.Name}}<BR>
+               {{.Amount}}     {{.Price}}<BR>
+{{end}}
+--------------------------------<BR>
+</L>
+
+<R>
+<B>合计：{{.Total}} 元</B><BR>
+</R>
+
+<L>
+门店地址：{{.StoreAddress}}<BR>
 门店电话：{{.StorePhone}}<BR>
 座位号：{{.SeatNumber}}<BR>
 支付时间：{{.PayTime}}<BR>
 用餐人数：{{.CustomerNum}}<BR>
-客户地址：{{.Address}}<BR>
 客户电话：{{.Phone}}<BR>
+客户地址：{{.Address}}<BR>
 备注：{{.Note}}<BR>
 </L>
-<C><QRCODE s=8 e=L l=center>{{.Invoice}}</QRCODE><BR>
-<C><BARCODE t=CODE128 w=2 h=100 p=2>{{.TradeID}}</BARCODE>
+
+<C>--------------------------------</C><BR>
+
+<C>
+<QRCODE s=6 e=L>{{.Invoice}}</QRCODE><BR>
+<BARCODE t=CODE128 h=60>{{.TradeID}}</BARCODE>
+</C>
 `
 
 // ReceiptData 定义小票数据结构
