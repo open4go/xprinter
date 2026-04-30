@@ -74,6 +74,8 @@ type ReceiptData struct {
 	Meta        MetaInfo
 	// 打印机打印小票的时间
 	PrintedTime string
+	// 支付方式
+	PayMethod string
 }
 
 // MetaInfo 基础信息
