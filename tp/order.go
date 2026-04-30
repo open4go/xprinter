@@ -54,10 +54,11 @@ const receiptTemplate = `<CB>黄李记</CB><BR>
 
 // ReceiptData 定义小票数据结构
 type ReceiptData struct {
-	Items        []Item
-	Total        string
-	Address      string
-	Phone        string
+	Items   []Item
+	Total   string
+	Address string
+	Phone   string
+	// 下单时间
 	OrderTime    string
 	Note         string
 	Invoice      string
@@ -65,11 +66,14 @@ type ReceiptData struct {
 	StorePhone   string
 	OrderID      string
 	QueueNumber  string
-	PayTime      string
-	TradeID      string
-	SeatNumber   string
-	CustomerNum  int
-	Meta         MetaInfo
+	// 成功支付的时间
+	PayTime     string
+	TradeID     string
+	SeatNumber  string
+	CustomerNum int
+	Meta        MetaInfo
+	// 打印机打印小票的时间
+	PrintedTime string
 }
 
 // MetaInfo 基础信息
