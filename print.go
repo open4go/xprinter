@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"github.com/sirupsen/logrus"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"time"
@@ -76,7 +75,7 @@ func (p *Printer) SignNow() (string, string) {
 	// Calculate SHA1 hash of JSON payload
 	hash := sha1.New()
 	t := fmt.Sprintf("%d", time.Now().Unix())
-	hash.Write([]byte(fmt.Sprintf("%s%s%s", p.User, p.UserKey, t)))
+	_, _ = fmt.Fprintf(hash, "%s%s%s", p.User, p.UserKey, t)
 	hashSum := hash.Sum(nil)
 	signature := fmt.Sprintf("%x", hashSum)
 	return signature, t
@@ -229,7 +228,7 @@ func (p *Printer) Check() (*PrinterStatusResp, error) {
 	}(resp.Body)
 
 	// Read the response body as a byte slice
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println("Error reading response body:", err)
 		return nil, err
